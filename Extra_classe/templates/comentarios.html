@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h3>Horarios disponiveis</h3>
+<ul>
+    {% for list in hora %}
+    <li>
+        <a href="{% url 'alterar_comentario' list.id %}" > Alterar</a>
+        <a> {{ list.nome_aluno }} / </a>
+        <a> {{ list.disciplina }} / </a>
+        <a> {{ list.comentario }}  </a>
+        <a href="{% url 'deletar_comentario' list.id %}" > Deletar</a>
+    </li>
+    {% endfor %}
+
+        <a href="/agenda_hora/">comentar</a>
+</body>
+</html>
