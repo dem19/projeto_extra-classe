@@ -7,6 +7,12 @@ class Horariodisponivel(ModelForm):
         fields = ['nome_professor','disciplina','data', 'hora']
 
 
+class Horariomarcado(ModelForm):
+    class Meta:
+        model = Atendimento
+        fields = ['nome_professor','disciplina','data', 'hora']
+
+
 class Alunofazercomentario(ModelForm):
     class Meta:
         model = Comentario

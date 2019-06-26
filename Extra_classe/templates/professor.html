@@ -18,8 +18,8 @@ bem-vindo {{ user.username }}!
 {% endblock %}
 
 <h3>Horarios disponiveis</h3>
-<div class="panel panel-primary">
-    <form method="post">
+<form method="POST" enctype="multipart/form-data">
+
 
 <ul>
     {% for list in hora %}
@@ -29,21 +29,16 @@ bem-vindo {{ user.username }}!
         <a> {{ list.nome_professor }} / </a>
         <a> {{ list.disciplina }} / </a>
         <a> {{ list.data }} / </a>
-        <a> {{ list.hora }}  </a>
-
-        <b>- Deseja Reservar o Horario? <button type="submit">Sim</button></b>
+        <a> {{ list.hora }} / </a>
+        <a href="{% url 'salvar' list.id %}">Salvar</a>
 
     </li>
-    </form>
-
     {% endfor %}
+
 
 </ul>
 <a href="/cadastrar_horario/">Cadastrar Horario disponivel</a> </ul>
--
-<a href="/marca_hora/">Reservar horarios</a> </ul>
-
-
+</form>
 </div>
 </body>
 </html>

@@ -1,20 +1,46 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import *
 from .models import Professor
 from django.contrib.auth.decorators import login_required
 
 
 def home(request):
-#    horario = Atendimento_Aluno.objects.all()
-    return render(request, 'home.html')
+    horario = Atendimento.objects.all()
+    return render(request, 'home.html', {'horario': horario})
 
 
-#manda informações pro template professor
 @login_required
 def professor(request):
     hora = Professor.objects.all()
     return render(request, 'professor.html',{'hora': hora})
 
+#########################################################################
+
+
+# Atendimento
+
+#@login_required
+#def salvar(request,id):
+#    marcar = Professor.objects.get(id=id)
+#    horario = Horariomarcado(request.POST or None, instance=marcar)
+#    if horario.is_valid():
+#        horario.save()
+#        return redirect(home)
+#
+#    return render(request, 'home.html',{'horario': horario})
+
+@login_required
+def salvar(request,id):
+    marcar = Professor.objects.get(id=id)
+    horas = Horariomarcado(request.POST or None,instance=marcar)
+    if horas.is_valid():
+        horas.save()
+        return redirect(home)
+
+    return render(request, 'salvar.html',{'horas': horas,'marcar':marcar})
+
+
+#########################################################################
 @login_required
 def cadastrar_horario(request):
     Mhora = Horariodisponivel(request.POST or None)
@@ -43,81 +69,42 @@ def deletar(request, id):
 
     return render(request, 'deletar.html', {'cadastrado': cadastrado})
 
-######################################################################
 
-#@login_required
-#def horario(request):
-#    horaM = Marcarhorario(request.POST or None)
-#    if horaM.is_valid():
-#        horaM.save()
-#        return redirect(home)
-#
-#    return render(request, 'horario.html', {'horaM': horaM})
+######################################################################################
 
 
-#@login_required
-#def marcar_horario(request):
-#    Mhras = Atendimento_Aluno.objects.all()
-#    return render(request, 'horarios_marc.html', {'Mhras': Mhras})
-#
-#
-#@login_required
-#def deletarH(request, id):
-#    cadastrado = Atendimento_Aluno.objects.get(id=id)
-#    if request.method == 'POST':
-#        cadastrado.delete()
-#        return redirect(home)
-#
-#    return render(request, 'deletarH.html', {'cadastrado': cadastrado})
+def aluno(request):
+    hora = Professor.objects.all()
+    return render(request, 'aluno.html',{'hora': hora})
 
 
-######################################################################################################3
+def agenda_hora(request):
+    agendaH = Alunofazercomentario(request.POST or None)
+    if agendaH.is_valid():
+        agendaH.save()
+        return redirect(home)
 
-##manda informações pro template aluno
-#def aluno(request):
-#    hora = Professor.objects.all()
-#    return render(request, 'aluno.html',{'hora': hora})
-#
-##comentario
-#def agenda_hora(request):
-#    agendaH = Agendarhorario(request.POST or None)
-#    if agendaH.is_valid():
-#        agendaH.save()
-#        return redirect(home)
-#
-#    return render(request, 'agenda_hora.html', {'agendaH': agendaH})
-#
-#
-#def deletar_comentario(request, id):
-#    cadastrado = Aluno.objects.get(id=id)
-#    if request.method == 'POST':
-#        cadastrado.delete()
-#        return redirect(home)
-#
-#    return render(request, 'deletarC.html', {'cadastrado': cadastrado})
-#
-#
-#def alterar_comentario(request, id):
-#    agenda = Aluno.objects.get(id=id)
-#    agendaH = Agendarhorario(request.POST or None, instance=agenda)
-#    if agendaH.is_valid():
-#        agendaH.save()
-#        return redirect(home)
-#    return render(request, 'agenda_hora.html', {'agendaH': agendaH, 'agenda': agenda})
-#
-#
-#def comentarios(request):
-#    hora = Aluno.objects.all()
-#    return render(request, 'comentarios.html', {'hora': hora})
-#
-########################################################################################
-#
-#
-#
-## colocar um bUtao so para o professor clica e ir o atendimento marcado e ir para a home
-## o aluno so tem que clicar para ter o atendimento
-#
-#
-#
-#
-#
+    return render(request, 'agenda_hora.html', {'agendaH': agendaH})
+
+
+def deletar_comentario(request, id):
+    cadastrado = Comentario.objects.get(id=id)
+    if request.method == 'POST':
+        cadastrado.delete()
+        return redirect(home)
+
+    return render(request, 'deletarC.html', {'cadastrado': cadastrado})
+
+
+def alterar_comentario(request, id):
+    agenda = Comentario.objects.get(id=id)
+    agendaH = Alunofazercomentario(request.POST or None, instance=agenda)
+    if agendaH.is_valid():
+        agendaH.save()
+        return redirect(home)
+    return render(request, 'agenda_hora.html', {'agendaH': agendaH, 'agenda': agenda})
+
+
+def comentarios(request):
+    hora = Comentario.objects.all()
+    return render(request, 'comentarios.html', {'hora': hora})

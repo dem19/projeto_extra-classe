@@ -30,17 +30,15 @@ urlpatterns = [
     path('cadastrar_horario/', cadastrar_horario,name='cadastrar_horario'),
     path('deletar_horario/<int:id>/', deletar, name='deletar_horario'),
     path('alterar_horario/<int:id>/', alterar, name='alterar_horario'),
+    path('salvar/<int:id>/', salvar, name='salvar'),
 
-#   path('aluno/', aluno,name='aluno'),
-#   path('agenda_hora/', agenda_hora,name='agenda_hora'),
-#   path('horarios/', horario,name='horarios'),
-#   path('comentarios/', comentarios,name='comentarios'),
-
-#   path('marca_hora/', marcar_horario,name='marca_hora'),
-#    path('delete_h_marcado/<int:id>/', deletarH, name='delete_h_marcado'),
-
-
- #   path('deletar_comentario/<int:id>/', deletar_comentario, name='deletar_comentario'),
- #   path('alterar_comentario/<int:id>/', alterar_comentario, name='alterar_comentario'),
+    path('aluno/', aluno,name='aluno'),
+    path('agenda_hora/', agenda_hora,name='agenda_hora'),
+  #  path('horarios/', horario,name='horarios'),
+    path('comentarios/', comentarios,name='comentarios'),
+   # path('marca_hora/', marcar_horario,name='marca_hora'),
+    #path('delete_h_marcado/<int:id>/', deletarH, name='delete_h_marcado'),
+    path('deletar_comentario/<int:id>/', deletar_comentario, name='deletar_comentario'),
+    path('alterar_comentario/<int:id>/', alterar_comentario, name='alterar_comentario'),
 ]
 

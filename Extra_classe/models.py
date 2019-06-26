@@ -24,13 +24,11 @@ class Comentario(models.Model):
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
     duvidas = models.CharField(max_length=500)
 
+
 class Atendimento(models.Model):
-    nome_professor = models.CharField(max_length=100)
-    disciplina = models.CharField(max_length=100)
+    nome_professor = models.ForeignKey(Profdisciplina, on_delete=models.CASCADE)
+    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
     data = models.DateField(max_length=20)
     hora = models.TimeField(max_length=20)
-
-
-
 
 
