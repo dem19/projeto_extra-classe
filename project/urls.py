@@ -31,13 +31,16 @@ urlpatterns = [
     path('deletar_horario/<int:id>/', deletar, name='deletar_horario'),
     path('alterar_horario/<int:id>/', alterar, name='alterar_horario'),
     path('salvar/<int:id>/', salvar, name='salvar'),
-
     path('aluno/', aluno,name='aluno'),
     path('agenda_hora/', agenda_hora,name='agenda_hora'),
-  #  path('horarios/', horario,name='horarios'),
+    path('com_atendimento/', com_atendimento,name='com_atendimento'),
+
+    path('confirmar/<int:id>/', confirmar,name='confirmar'),
+
+
     path('comentarios/', comentarios,name='comentarios'),
-   # path('marca_hora/', marcar_horario,name='marca_hora'),
-    #path('delete_h_marcado/<int:id>/', deletarH, name='delete_h_marcado'),
+    path('mostrar/', mostrar,name='mostrar'),
+    path('delete_h_marcado/<int:id>/', apaga, name='delete_h_marcado'),
     path('deletar_comentario/<int:id>/', deletar_comentario, name='deletar_comentario'),
     path('alterar_comentario/<int:id>/', alterar_comentario, name='alterar_comentario'),
 ]

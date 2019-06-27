@@ -32,3 +32,10 @@ class Atendimento(models.Model):
     hora = models.TimeField(max_length=20)
 
 
+class Aluno(models.Model):
+    nome_professor = models.ForeignKey(Profdisciplina, on_delete=models.CASCADE)
+    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
+    data = models.DateField(max_length=20)
+    hora = models.TimeField(max_length=20)
+    Confirmar = models.BooleanField(default=True)
+

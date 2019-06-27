@@ -7,5 +7,6 @@ admin.site.register(Disciplina)
 admin.site.register(Comentario)
 admin.site.register(Profdisciplina)
 admin.site.register(Atendimento)
+admin.site.register(Aluno)
 
 

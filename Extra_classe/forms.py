@@ -18,4 +18,10 @@ class Alunofazercomentario(ModelForm):
         model = Comentario
         fields = ['nome_aluno','disciplina','duvidas']
 
+class Alunodisponivelizar(ModelForm):
+    class Meta:
+        model = Aluno
+        fields = ['nome_professor','disciplina','data', 'hora','Confirmar']
+
+
 
